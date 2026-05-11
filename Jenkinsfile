@@ -19,11 +19,12 @@ pipeline {
     steps {
         echo 'Running unit tests...'
         sh """
+            chmod +x scripts/run_tests.sh
             docker run --rm \
                 -v \$(pwd):/workspace \
                 -w /workspace \
                 python:3.12-slim \
-                sh scripts/run_tests.sh
+                sh /workspace/scripts/run_tests.sh
         """
     }
 }
