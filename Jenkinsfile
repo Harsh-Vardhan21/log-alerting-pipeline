@@ -18,7 +18,10 @@ pipeline {
         stage('Test') {
     steps {
         echo 'Running unit tests...'
-        sh 'docker run --rm -v $WORKSPACE:/workspace -w /workspace log-alerting-pipeline python tests/test_monitor.py'
+        sh '''
+            pip3 install pyyaml --break-system-packages --quiet
+            python3 tests/test_monitor.py
+        '''
     }
 }
         stage('Build Docker Image') {
