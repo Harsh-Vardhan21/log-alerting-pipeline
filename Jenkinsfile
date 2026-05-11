@@ -16,11 +16,17 @@ pipeline {
         }
 
         stage('Test') {
-    steps {
-        echo 'Running unit tests...'
-        sh 'docker run --rm -v $(pwd):/workspace -w /workspace python:3.12-slim sh -c "pip install pyyaml -q && python tests/test_monitor.py"'
-    }
-}
+            steps {
+                echo 'Running unit tests...'
+                sh """
+                    docker run --rm \
+                        -v \$(pwd):/workspace \
+                        -w /workspace \
+                        python:3.12-slim \
+                        sh -c 'pip install pyyaml -q && python tests/test_monitor.py'
+                """
+            }
+        }
 
         stage('Build Docker Image') {
             steps {
