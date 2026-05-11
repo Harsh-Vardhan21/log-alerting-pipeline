@@ -18,12 +18,7 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Running unit tests...'
-                sh '''
-                    apt-get update -qq
-                    apt-get install -y python3-pip -qq
-                    pip3 install pyyaml --break-system-packages
-                    python3 tests/test_monitor.py
-                '''
+                sh 'docker run --rm -v $(pwd):/app -w /app python:3.12-slim python tests/test_monitor.py'
             }
         }
 
