@@ -18,10 +18,15 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Running unit tests...'
-                sh 'pip3 install pyyaml --break-system-packages'
-                sh 'python3 tests/test_monitor.py'
+                sh '''
+                    apt-get update -qq
+                    apt-get install -y python3-pip -qq
+                    pip3 install pyyaml --break-system-packages
+                    python3 tests/test_monitor.py
+                '''
             }
         }
+    }
 
         stage('Build Docker Image') {
             steps {
