@@ -1,0 +1,11 @@
+log_file: "logs/app.log"
+
+keywords:
+  - "ERROR"
+  - "CRITICAL"
+
+threshold: 3
+
+interval: 30
+
+cooldown: 300
