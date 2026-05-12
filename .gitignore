@@ -4,3 +4,5 @@ __pycache__/
 *.pyc
 dashboard/node_modules/
 dashboard/.next/
+aws/
+awscliv2.zip
